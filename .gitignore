@@ -3,6 +3,11 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+# NOTE I added these 2 per Mark
+appsettings.*
+.vscode
+
+
 # User-specific files
 *.rsuser
 *.suo
