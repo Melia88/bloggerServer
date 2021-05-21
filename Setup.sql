@@ -27,20 +27,20 @@
 -- ); 
 
 
- CREATE TABLE comments (
-  id INT NOT NULL,
-  creatorId VARCHAR (255) NOT NULL,
-  body VARCHAR (255) NOT NULL,
-  blogId INT NOT NULL,
+--  CREATE TABLE comments (
+--   id INT NOT NULL,
+--   creatorId VARCHAR (255) NOT NULL,
+--   body VARCHAR (255) NOT NULL,
+--   blogId INT NOT NULL,
 
 
-  PRIMARY KEY (id),
+--   PRIMARY KEY (id),
 
-  FOREIGN KEY (creatorId)
-  REFERENCES accounts (id)
-  ON DELETE CASCADE,
-  FOREIGN KEY (blogId)
-  REFERENCES blogs (id)
-  ON DELETE CASCADE
-); 
+--   FOREIGN KEY (creatorId)
+--   REFERENCES accounts (id)
+--   ON DELETE CASCADE,
+--   FOREIGN KEY (blogId)
+--   REFERENCES blogs (id)
+--   ON DELETE CASCADE
+-- ); 
 
