@@ -63,12 +63,12 @@ namespace bloggerServer
 
       // NOTE Transient Services
       services.AddTransient<AccountsService>();
-      //   services.AddTransient<RecipesService>();
+      services.AddTransient<BlogsService>();
       //   services.AddTransient<IngredientsService>();
 
       // NOTE Transient Repo's 
       services.AddTransient<AccountsRepository>();
-      //   services.AddTransient<RecipesRepository>();
+      services.AddTransient<BlogsRepository>();
       //   services.AddTransient<IngredientsRepository>();
 
 
