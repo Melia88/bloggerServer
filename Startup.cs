@@ -64,12 +64,12 @@ namespace bloggerServer
       // NOTE Transient Services
       services.AddTransient<AccountsService>();
       services.AddTransient<BlogsService>();
-      //   services.AddTransient<IngredientsService>();
+      services.AddTransient<CommentsService>();
 
       // NOTE Transient Repo's 
       services.AddTransient<AccountsRepository>();
       services.AddTransient<BlogsRepository>();
-      //   services.AddTransient<IngredientsRepository>();
+      services.AddTransient<CommentsRepository>();
 
 
       // TODO[epic=DB] database Connection
