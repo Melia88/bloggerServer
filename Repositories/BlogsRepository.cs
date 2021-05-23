@@ -31,16 +31,14 @@ namespace bloggerServer.Repositories
         return blog;
       }, splitOn: "id");
     }
-
-
-    public IEnumerable<Blog> GetByCreatorId(string id)
+    public IEnumerable<Blog> GetBlogsByCreatorId(string id)
     {
       string sql = @"
       SELECT 
-        c.*,
+        b.*,
         a.* 
-      FROM cars c
-      JOIN accounts a ON c.creatorId = a.id
+      FROM blog c
+      JOIN accounts a ON b.creatorId = a.id
       WHERE creatorId = @id";
       return _db.Query<Blog, Account, Blog>(sql, (blog, account) =>
       {
@@ -53,10 +51,10 @@ namespace bloggerServer.Repositories
     {
       string sql = @"
       SELECT 
-        c.*,
+        b.*,
         a.* 
-      FROM cars c
-      JOIN accounts a ON c.creatorId = a.id
+      FROM blogs b
+      JOIN accounts a ON b.creatorId = a.id
       WHERE id = @id";
       return _db.Query<Blog, Account, Blog>(sql, (blog, account) =>
       {
@@ -91,13 +89,14 @@ namespace bloggerServer.Repositories
       int affectedRows = _db.Execute(sql, original);
       return affectedRows == 1;
     }
+
+
     internal bool Delete(int id)
     {
       string sql = "DELETE FROM blogs WHERE id = @id LIMIT 1";
       int affectedRows = _db.Execute(sql, new { id });
       return affectedRows == 1;
     }
-
 
 
   }

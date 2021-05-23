@@ -79,7 +79,7 @@ namespace bloggerServer
 
       services.AddSwaggerGen(c =>
       {
-        c.SwaggerDoc("v1", new OpenApiInfo { Title = "auth_cs_gregslist", Version = "v1" });
+        c.SwaggerDoc("v1", new OpenApiInfo { Title = "gearhost", Version = "v1" });
       });
     }
 

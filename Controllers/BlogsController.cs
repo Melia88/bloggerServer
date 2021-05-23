@@ -15,11 +15,13 @@ namespace bloggerServer.Controllers
   {
     private readonly BlogsService _bService;
     private readonly AccountsService _acctService;
+    private readonly CommentsService _cService;
 
-    public BlogsController(BlogsService bService, AccountsService acctsService)
+    public BlogsController(BlogsService bService, AccountsService acctsService, CommentsService cService)
     {
       _bService = bService;
       _acctService = acctsService;
+      _cService = cService;
     }
     [HttpGet]
     public ActionResult<IEnumerable<Blog>> GetAll()
@@ -47,6 +49,23 @@ namespace bloggerServer.Controllers
         return BadRequest(e.Message);
       }
     }
+
+
+    [HttpGet("{id}/comments")]
+    public ActionResult<Blog> GetCommentsByBlogId(int id)
+    {
+      try
+      {
+        Comment found = _cService.GetCommentsByBlogId(id);
+        return Ok(found);
+      }
+      catch (Exception e)
+      {
+        return BadRequest(e.Message);
+      }
+    }
+
+
     [HttpPost]
     [Authorize]
     public async Task<ActionResult<CreatedAtActionResult>> Create([FromBody] Blog newBlog)

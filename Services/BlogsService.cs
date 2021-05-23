@@ -69,5 +69,16 @@ namespace bloggerServer.Services
         throw new Exception("Something has gone very very wrong!");
       }
     }
+
+    internal IEnumerable<Blog> GetBlogsByCreatorId(string id)
+    {
+      return _repo.GetBlogsByCreatorId(id);
+      // Blog myBlogs = _repo.GetBlogsByCreatorId(id);
+      // if (myBlogs == null)
+      // {
+      //   throw new Exception("No Blogs to Show");
+      // }
+      // return myBlogs;
+    }
   }
 }
