@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using bloggerServer.Models;
 using bloggerServer.Repositories;
 
@@ -13,14 +15,9 @@ namespace bloggerServer.Services
       _repo = repo;
     }
 
-    internal Comment GetCommentsByBlogId(int id)
+    internal IEnumerable<Comment> GetCommentsByBlogId(int id)
     {
-      Comment comment = _repo.GetCommentsByBlogId(id);
-      if (comment == null)
-      {
-        throw new Exception("Invalid Blog Id");
-      }
-      return comment;
+      return _repo.GetCommentsByBlogId(id);
     }
 
     internal Comment Create(Comment newComment)
@@ -30,7 +27,7 @@ namespace bloggerServer.Services
 
     internal Comment Update(Comment update)
     {
-      Comment original = GetCommentsByBlogId(update.Id);
+      Comment original = GetCommentsByBlogId(update.Id).FirstOrDefault();
       // check if update.creatorId is the same as original.creator id
       if (update.CreatorId != original.CreatorId)
       {
@@ -46,9 +43,17 @@ namespace bloggerServer.Services
       throw new Exception("Something went wrong??");
     }
 
-    internal void Delete(int id1, string id2)
+    internal void Delete(int id, string creatorId)
     {
-      throw new NotImplementedException();
+      Comment comment = GetCommentsByBlogId(id).FirstOrDefault();
+      if (comment.CreatorId != creatorId)
+      {
+        throw new Exception("You cannot delort another users comment!");
+      }
+      if (!_repo.Delete(id))
+      {
+        throw new Exception("Something has gone very very wrong!");
+      }
     }
   }
 }

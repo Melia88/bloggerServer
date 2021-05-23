@@ -52,12 +52,12 @@ namespace bloggerServer.Controllers
 
 
     [HttpGet("{id}/comments")]
-    public ActionResult<Blog> GetCommentsByBlogId(int id)
+    public ActionResult<IEnumerable<Comment>> GetCommentsByBlogId(int id)
     {
       try
       {
-        Comment found = _cService.GetCommentsByBlogId(id);
-        return Ok(found);
+        IEnumerable<Comment> comments = _cService.GetCommentsByBlogId(id);
+        return Ok(comments);
       }
       catch (Exception e)
       {
