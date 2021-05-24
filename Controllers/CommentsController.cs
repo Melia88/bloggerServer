@@ -25,7 +25,7 @@ namespace bloggerServer.Controllers
 
     [HttpPost]
     [Authorize]
-    public async Task<ActionResult<CreatedAtActionResult>> Create([FromBody] Comment newComment)
+    public async Task<ActionResult<Comment>> Create([FromBody] Comment newComment)
     {
       try
       {
