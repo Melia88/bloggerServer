@@ -19,6 +19,7 @@ namespace bloggerServer.Repositories
     public IEnumerable<Blog> GetAll()
     {
       // blogs is what my table is names so this is calling FROM the blogs table
+      // The JOIN is a step needed to use populate
       string sql = @"
       SELECT 
         b.*,
@@ -79,6 +80,7 @@ namespace bloggerServer.Repositories
     internal bool Update(Blog original)
     {
       string sql = @"
+      UPDATE blogs
       SET 
         title = @Title,
         body = @Body,

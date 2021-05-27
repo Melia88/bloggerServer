@@ -74,7 +74,7 @@ namespace bloggerServer.Controllers
       {
         Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
         _cService.Delete(id, userInfo.Id);
-        return Ok("Succesfully Deleted");
+        return Ok("Successfully Deleted");
       }
       catch (Exception e)
       {

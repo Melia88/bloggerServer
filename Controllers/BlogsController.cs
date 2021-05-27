@@ -68,14 +68,15 @@ namespace bloggerServer.Controllers
 
     [HttpPost]
     [Authorize]
-    public async Task<ActionResult<CreatedAtActionResult>> Create([FromBody] Blog newBlog)
+    public async Task<ActionResult<Blog>> Create([FromBody] Blog newBlog)
     {
       try
       {
         // TODO[epic=Auth] Get the user info to set the creatorID
         Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
-        // safety to make sure an account exists for that user before CREATE-ing stuff.
+        // Create an account if one doesnt exist
         Account fullAccount = _acctService.GetOrCreateAccount(userInfo);
+        // safety to make sure an account exists for that user before CREATE-ing stuff.
         newBlog.CreatorId = userInfo.Id;
 
         Blog blog = _bService.Create(newBlog);
