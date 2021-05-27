@@ -72,7 +72,7 @@ namespace bloggerServer.Repositories
       (creatorId, title, body, imgUrl, published)
       VALUES
       (@CreatorId, @Title, @Body, @ImgUrl, @Published)
-      SELECT LAST_INSERT_ID";
+      SELECT LAST_INSERT_ID()";
       newBlog.Id = _db.ExecuteScalar<int>(sql, newBlog);
       return newBlog;
     }
